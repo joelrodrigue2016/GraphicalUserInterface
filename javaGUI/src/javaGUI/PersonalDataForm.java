@@ -1,3 +1,4 @@
+
 package javaGUI;
 
 import java.awt.EventQueue;
@@ -44,6 +45,7 @@ public class PersonalDataForm {
 	/**
 	 * Initialize the contents of the frame.
 	 */
+	@SuppressWarnings("rawtypes")
 	private void initialize() {
 		frame = new JFrame();
 		frame.setBounds(100, 100, 598, 513);
