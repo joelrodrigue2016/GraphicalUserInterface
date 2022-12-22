@@ -20,29 +20,39 @@ public class SQLITEConnection {
 			conn.setAutoCommit(false);
 			Statement stmt = conn.createStatement();
 			System.out.println("Connected successfully!!");
-			//// DROP TABLE IF EXISTS
+
+			/**
+			 * create TABLE IF EXISTS
+			 */
 			String sql = "CREATE TABLE if not exists personalInfo " + "(  ID INTEGER PRIMARY KEY AUTOINCREMENT,"
 					+ " NAME           TEXT    NOT NULL, " + " LASTNAME           TEXT    NOT NULL,"
 					+ " NATIONALITY           TEXT, " + " AGE            INT     NOT NULL," + " ADDRESS         TEXT, "
 					+ " SCHOOL       TEXT)";
 			stmt.executeUpdate(sql);
 			System.out.println("table created successfully!!");
+			/**
+			 * Entering data NAME,LASTNAME,NATIONALITY,AGE,ADDRESS,SCHOOL
+			 */
+
 			stmt = conn.createStatement();
 			String sqlinput = "INSERT INTO personalInfo (NAME,LASTNAME,NATIONALITY,AGE,ADDRESS,SCHOOL) "
-					+ "VALUES ('Paul','Perez', 'American','32', 'California','University of Florida' );";
+					+ "VALUES ('Paul','Perez', 'American','20', 'California','University of Florida' );";
 
 			stmt.executeUpdate(sqlinput);
 			String sqlinput1 = "INSERT INTO personalInfo (NAME,LASTNAME,NATIONALITY,AGE,ADDRESS,SCHOOL) "
-					+ "VALUES ('Paul','Perez', 'American','32', 'California','University of Florida' );";
+					+ "VALUES ('Moises','Perez', 'Dominican','32', 'Higuey','Universidad Autonoma de Santo Domingo' );";
 
 			stmt.executeUpdate(sqlinput1);
 			String sqlinput2 = "INSERT INTO personalInfo (NAME,LASTNAME,NATIONALITY,AGE,ADDRESS,SCHOOL) "
-					+ "VALUES ('Paul','Perez', 'American','32', 'California','University of Florida' );";
+					+ "VALUES ('Edwardo','Perez', 'French','22', 'Higuey','Universidad Autonoma de Santo Domingo'  );";
 			stmt.executeUpdate(sqlinput2);
 
 			String sqlinput3 = "INSERT INTO personalInfo (NAME,LASTNAME,NATIONALITY,AGE,ADDRESS,SCHOOL) "
 					+ "VALUES ('Joel','Rodriguez', 'American','35', 'Florida','Florida Atlantic University' );";
 			stmt.executeUpdate(sqlinput3);
+			/**
+			 * Closing all the processes
+			 */
 
 			stmt.close();
 			conn.commit();
