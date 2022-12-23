@@ -20,8 +20,7 @@ import javax.swing.border.EmptyBorder;
 /**
  * User Registration using Swing
  * 
- * @author javaguides.net
- *
+ * @author javaguides.net https://www.youtube.com/watch?v=Gwwfetb5CJs
  */
 public class UserRegistration extends JFrame {
 	private static final long serialVersionUID = 1L;
@@ -165,10 +164,10 @@ public class UserRegistration extends JFrame {
 					Statement sta = connection.createStatement();
 					int x = sta.executeUpdate(query);
 					if (x == 0) {
-						JOptionPane.showMessageDialog(btnNewButton, "This is alredy exist");
+						JOptionPane.showMessageDialog(btnNewButton, "This alredy exist");
 					} else {
 						JOptionPane.showMessageDialog(btnNewButton,
-								"Welcome, " + msg + "Your account is sucessfully created");
+								"Welcome, " + msg + "Your account has been sucessfully created");
 					}
 					connection.close();
 				} catch (Exception exception) {
