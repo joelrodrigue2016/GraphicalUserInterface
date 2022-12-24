@@ -18,7 +18,7 @@ import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 
 /**
- * User Registration using Swing
+ * f User Registration using Swing
  * 
  * @author javaguides.net https://www.youtube.com/watch?v=Gwwfetb5CJs
  */
