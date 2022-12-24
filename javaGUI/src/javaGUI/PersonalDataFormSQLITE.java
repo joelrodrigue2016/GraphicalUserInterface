@@ -1,4 +1,3 @@
-
 package javaGUI;
 
 import java.awt.EventQueue;
@@ -14,7 +13,7 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 
-public class PersonalDataForm {
+public class PersonalDataFormSQLITE {
 
 	private JFrame frmPersonalDataCollection;
 	private JTextField name;
@@ -32,7 +31,7 @@ public class PersonalDataForm {
 			@Override
 			public void run() {
 				try {
-					PersonalDataForm window = new PersonalDataForm();
+					PersonalDataFormSQLITE window = new PersonalDataFormSQLITE();
 					window.frmPersonalDataCollection.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -44,7 +43,7 @@ public class PersonalDataForm {
 	/**
 	 * Create the application.
 	 */
-	public PersonalDataForm() {
+	public PersonalDataFormSQLITE() {
 		initialize();
 	}
 
@@ -156,18 +155,33 @@ public class PersonalDataForm {
 					if (len != 2) {
 						JOptionPane.showMessageDialog(btnsubmit, "Enter a valid age");
 					}
-					Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/swing_demo",
-							"root", "3715");
-					String query = "INSERT INTO PersonalData values('" + firstName + "','" + lastName + "','"
-							+ Nationality + "','" + Age + "','" + Address + "','" + School + "')";
+					Connection connection = null;
+					String dbname = "personal";
+					Class.forName("org.sqlite.JDBC");
+					connection = DriverManager.getConnection("jdbc:sqlite:" + dbname + ".sqlite");
+					connection.setAutoCommit(false);
 					Statement statement = connection.createStatement();
+					String sqlinput = "INSERT INTO personalInfo values('" + firstName + "','" + lastName + "','"
+							+ Nationality + "','" + Age + "','" + Address + "','" + School + "')";
+
+					int x = statement.executeUpdate(sqlinput);
+
+					connection.commit();
+					statement.close();
 					JOptionPane.showMessageDialog(btnsubmit, "Data was entered successfully!!");
-					int x = statement.executeUpdate(query);
+
 					if (x == 0) {
 						JOptionPane.showMessageDialog(btnsubmit, "This alredy exist");
 					}
+					/**
+					 * Closing all the processes
+					 */
+
+					statement.close();
 
 					connection.close();
+					System.out.println("Data entered successfully!!");
+
 				} catch (Exception ex) {
 					// TODO: handle exception
 					ex.printStackTrace();

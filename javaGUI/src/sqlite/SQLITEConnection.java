@@ -24,10 +24,9 @@ public class SQLITEConnection {
 			/**
 			 * create TABLE IF EXISTS
 			 */
-			String sql = "CREATE TABLE if not exists personalInfo " + "(  ID INTEGER PRIMARY KEY AUTOINCREMENT,"
-					+ " NAME           TEXT    NOT NULL, " + " LASTNAME           TEXT    NOT NULL,"
-					+ " NATIONALITY           TEXT, " + " AGE            INT     NOT NULL," + " ADDRESS         TEXT, "
-					+ " SCHOOL       TEXT)";
+			String sql = "CREATE TABLE if not exists personalInfo " + "(" + " NAME           TEXT    NOT NULL, "
+					+ " LASTNAME           TEXT    NOT NULL," + " NATIONALITY           TEXT, "
+					+ " AGE            INT     NOT NULL," + " ADDRESS         TEXT, " + " SCHOOL       TEXT)";
 			stmt.executeUpdate(sql);
 			System.out.println("table created successfully!!");
 			/**
