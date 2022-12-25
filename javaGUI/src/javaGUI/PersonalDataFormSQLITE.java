@@ -120,10 +120,10 @@ public class PersonalDataFormSQLITE {
 		frmPersonalDataCollection.getContentPane().add(school);
 		school.setColumns(10);
 		// cancel button
-		JButton btncancel = new JButton("Cancel");
-		btncancel.setBounds(265, 376, 91, 23);
-		frmPersonalDataCollection.getContentPane().add(btncancel);
-		btncancel.addActionListener(new ActionListener() {
+		JButton btnclose = new JButton("Close");
+		btnclose.setBounds(265, 376, 91, 23);
+		frmPersonalDataCollection.getContentPane().add(btnclose);
+		btnclose.addActionListener(new ActionListener() {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
