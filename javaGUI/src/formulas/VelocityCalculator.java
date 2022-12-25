@@ -5,6 +5,7 @@ import java.awt.EventQueue;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.text.DecimalFormat;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -48,7 +49,7 @@ public class VelocityCalculator {
 		frmVelocityCalculator = new JFrame();
 		frmVelocityCalculator.getContentPane().setBackground(new Color(166, 255, 255));
 		frmVelocityCalculator.setTitle("Velocity Calculator");
-		frmVelocityCalculator.setBounds(100, 100, 350, 350);
+		frmVelocityCalculator.setBounds(100, 100, 400, 350);
 		frmVelocityCalculator.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frmVelocityCalculator.getContentPane().setLayout(null);
 		///// window//////////////////////////////
@@ -76,7 +77,7 @@ public class VelocityCalculator {
 		JLabel answer = new JLabel("");
 		answer.setFont(new Font("Tahoma", Font.BOLD, 17));
 		answer.setForeground(new Color(0, 0, 255));
-		answer.setBounds(10, 196, 298, 54);
+		answer.setBounds(10, 196, 364, 54);
 		frmVelocityCalculator.getContentPane().add(answer);
 
 		JButton btnenter = new JButton("Enter");
@@ -91,15 +92,22 @@ public class VelocityCalculator {
 				// TODO Auto-generated method stub
 
 				try {
-
+					//// get answer in String values from the user
 					String diString = distance.getText();
 					String timeString = time.getText();
+					//// convert answers to double
 					double dist = Double.parseDouble(diString);
 					double time = Double.parseDouble(timeString);
-					String s = String.valueOf(dist / time);
+					DecimalFormat df = new DecimalFormat("#.00000");
+					double number = Double.valueOf(df.format(dist / time));
+
+					/// get the results back to String
+					String s = String.valueOf(number);
+					/// Display answer to the user
 					answer.setText("The answer is: " + s + " m/s ");
+					/// Display for the programmer
 					System.out.println("values entered were " + diString + " and " + timeString
-							+ " the answer displayed to the user was: " + s);
+							+ " the answer displayed to the user was: " + s + " m/s ");
 
 				} catch (NumberFormatException e1) {
 					// TODO Auto-generated catch block
