@@ -46,7 +46,7 @@ public class VelocityCalculator {
 	 */
 	private void initialize() {
 		frmVelocityCalculator = new JFrame();
-		frmVelocityCalculator.getContentPane().setBackground(new Color(255, 128, 0));
+		frmVelocityCalculator.getContentPane().setBackground(new Color(166, 255, 255));
 		frmVelocityCalculator.setTitle("Velocity Calculator");
 		frmVelocityCalculator.setBounds(100, 100, 350, 350);
 		frmVelocityCalculator.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
