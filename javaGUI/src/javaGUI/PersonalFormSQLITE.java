@@ -1,5 +1,7 @@
+
 package javaGUI;
 
+import java.awt.Color;
 import java.awt.EventQueue;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -13,7 +15,7 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 
-public class PersonalDataFormSQLITE {
+public class PersonalFormSQLITE {
 
 	private JFrame frmPersonalDataCollection;
 	private JTextField name;
@@ -31,7 +33,7 @@ public class PersonalDataFormSQLITE {
 			@Override
 			public void run() {
 				try {
-					PersonalDataFormSQLITE window = new PersonalDataFormSQLITE();
+					PersonalFormSQLITE window = new PersonalFormSQLITE();
 					window.frmPersonalDataCollection.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -43,7 +45,7 @@ public class PersonalDataFormSQLITE {
 	/**
 	 * Create the application.
 	 */
-	public PersonalDataFormSQLITE() {
+	public PersonalFormSQLITE() {
 		initialize();
 	}
 
@@ -54,6 +56,7 @@ public class PersonalDataFormSQLITE {
 
 		// frame
 		frmPersonalDataCollection = new JFrame();
+		frmPersonalDataCollection.getContentPane().setBackground(new Color(166, 255, 255));
 		frmPersonalDataCollection.setTitle("Personal Data Collection Form");
 		frmPersonalDataCollection.setBounds(100, 100, 598, 513);
 
@@ -155,33 +158,27 @@ public class PersonalDataFormSQLITE {
 					if (len != 2) {
 						JOptionPane.showMessageDialog(btnsubmit, "Enter a valid age");
 					}
-					Connection connection = null;
+					Connection conn = null;
 					String dbname = "personal";
-					Class.forName("org.sqlite.JDBC");
-					connection = DriverManager.getConnection("jdbc:sqlite:" + dbname + ".sqlite");
-					connection.setAutoCommit(false);
-					Statement statement = connection.createStatement();
-					String sqlinput = "INSERT INTO personalInfo values('" + firstName + "','" + lastName + "','"
+					conn = DriverManager.getConnection("jdbc:sqlite:" + dbname + ".sqlite");
+					conn.setAutoCommit(false);
+					Statement stmt = conn.createStatement();
+					System.out.println("Connected successfully!!");
+					String query = "INSERT INTO personalInfo values('" + firstName + "','" + lastName + "','"
 							+ Nationality + "','" + Age + "','" + Address + "','" + School + "')";
+					Statement statement = conn.createStatement();
 
-					int x = statement.executeUpdate(sqlinput);
+					stmt.executeUpdate(query);
+					stmt.close();
+					conn.commit();
 
-					connection.commit();
-					statement.close();
 					JOptionPane.showMessageDialog(btnsubmit, "Data was entered successfully!!");
-
+					int x = statement.executeUpdate(query);
 					if (x == 0) {
 						JOptionPane.showMessageDialog(btnsubmit, "This alredy exist");
 					}
-					/**
-					 * Closing all the processes
-					 */
 
-					statement.close();
-
-					connection.close();
-					System.out.println("Data entered successfully!!");
-
+					conn.close();
 				} catch (Exception ex) {
 					// TODO: handle exception
 					ex.printStackTrace();
